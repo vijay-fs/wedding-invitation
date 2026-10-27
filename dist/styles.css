@@ -109,3 +109,12 @@ html[lang=ta] .couple-request p:not(.pathway-names){font-size:8px;line-height:1.
 .pathway-couple,.anime-ribbon,.ribbon-bow,.ribbon-scissors,.ribbon-instruction{left:var(--pathway-center,58%)}
 .couple-request{left:calc(var(--pathway-center,58%) + 34px)}
 @media(max-width:760px){.scene-wash{background:radial-gradient(ellipse at 17% 58%,#fffdfbd9 0%,#fffdfb8f 28%,transparent 63%)}.pathway-glow{background:linear-gradient(0deg,#fffdfb55 0%,transparent 40%)}}
+
+/* Project every foreground element onto the visible illustrated walkway. */
+.church-scene img{position:absolute;max-width:none}
+.church-scene.has-side-space{background:var(--paper)}
+.church-scene.has-side-space img{mask-image:linear-gradient(90deg,transparent,#000 14%,#000);-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000)}
+.pathway-couple{width:var(--pathway-figure-width,46px);bottom:var(--pathway-feet-bottom,24px)}
+.pathway-ribbon{bottom:var(--pathway-ribbon-bottom,62px)}
+.anime-ribbon{width:var(--pathway-ribbon-width,135px)}
+.couple-request{bottom:var(--pathway-dialogue-bottom,101px)}

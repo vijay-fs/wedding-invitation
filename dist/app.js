@@ -102,24 +102,39 @@
     const w = innerWidth, h = innerHeight;
     const portrait=w<=760;
     const artwork=portrait
-      ? {src:'assets/anime-church-narrow-phone.webp',width:1024,height:1536,crossX:.528,crossY:.295,pathX:.517,roofY:.184,positionX:.5}
-      : {src:'assets/anime-church-narrow-wide.webp',width:1586,height:992,crossX:.614,crossY:.217,pathX:.608,roofY:.04,positionX:.6};
+      ? {src:'assets/anime-church-narrow-phone.webp',width:1024,height:1536,crossX:.528,crossY:.295,pathX:.517,pathTop:.735,pathFarWidth:.073,pathNearWidth:.444,positionX:.5}
+      : {src:'assets/anime-church-narrow-wide.webp',width:1586,height:992,crossX:.614,crossY:.217,pathX:.608,pathTop:.84,pathFarWidth:.063,pathNearWidth:.236,positionX:.6};
     const churchImage=$('church-image');
     if(scene.dataset.artwork!==artwork.src){churchImage.src=asset(artwork.src);scene.dataset.artwork=artwork.src;}
     // Reserve the header's full height before fitting the illustrated building.
     const safeTop=Math.max(portrait?68:86,$('header').offsetHeight)+12;
     const imageHeight=Math.max(1,h-safeTop);
     opening.style.setProperty('--church-safe-top',safeTop+'px');
-    const cover = Math.max(w / artwork.width, imageHeight / artwork.height);
-    const rw = artwork.width * cover, rh = artwork.height * cover;
-    const imageLeft=(w-rw)*artwork.positionX;
-    // When a wide viewport needs a crop, keep the rooftop below the header.
-    const imageTop=Math.min(0,Math.max((imageHeight-rh)*.5,12-rh*artwork.roofY));
-    const positionY=Math.abs(imageHeight-rh)>.5?imageTop/(imageHeight-rh):.5;
-    scene.style.setProperty('--church-object-position',(artwork.positionX*100)+'% '+(positionY*100)+'%');
-    opening.style.setProperty('--pathway-center',(imageLeft+rw*artwork.pathX)+'px');
+    // Fit the full height so laptop aspect ratios cannot crop away the walkway.
+    const scale=imageHeight/artwork.height;
+    const rw=artwork.width*scale,rh=imageHeight;
+    const imageLeft=rw<w?w-rw:(w-rw)*artwork.positionX;
+    churchImage.style.width=rw+'px';churchImage.style.height=rh+'px';
+    churchImage.style.left=imageLeft+'px';churchImage.style.top='0px';
+    scene.classList.toggle('has-side-space',rw<w);
+    const pathCenter=imageLeft+rw*artwork.pathX;
+    const roadTop=safeTop+rh*artwork.pathTop;
+    const roadBottom=safeTop+rh*.99;
+    const feetY=Math.min(h-42,roadTop+(roadBottom-roadTop)*.78);
+    const preferredWidth=portrait?(h<=740?48:54):clamp(w*.05,46,74);
+    const figureHeight=Math.min(preferredWidth*1.5,Math.max(24,feetY-roadTop-8));
+    const ribbonY=feetY-figureHeight*.53;
+    const ribbonDepth=clamp((ribbonY-roadTop)/Math.max(1,roadBottom-roadTop));
+    const roadWidth=rw*(artwork.pathFarWidth+(artwork.pathNearWidth-artwork.pathFarWidth)*ribbonDepth);
+    const ribbonWidth=Math.min(portrait?158:clamp(w*.16,135,220),roadWidth*.9);
+    opening.style.setProperty('--pathway-center',pathCenter+'px');
+    opening.style.setProperty('--pathway-figure-width',(figureHeight/1.5)+'px');
+    opening.style.setProperty('--pathway-feet-bottom',(h-feetY)+'px');
+    opening.style.setProperty('--pathway-ribbon-bottom',(h-ribbonY-9)+'px');
+    opening.style.setProperty('--pathway-ribbon-width',ribbonWidth+'px');
+    opening.style.setProperty('--pathway-dialogue-bottom',(h-feetY+figureHeight+6)+'px');
     dimensions = {
-      w,h, x:imageLeft+rw*artwork.crossX, y:safeTop+imageTop+rh*artwork.crossY,
+      w,h, x:imageLeft+rw*artwork.crossX, y:safeTop+rh*artwork.crossY,
       distance:Math.max(1,opening.offsetHeight-h), top:opening.offsetTop
     };
     scene.style.transformOrigin = dimensions.x + 'px ' + (dimensions.y-safeTop) + 'px';
