@@ -16,7 +16,8 @@
   const text = {
     en: {
       skip:'Skip the opening animation',menu:'Menu',navCouple:'The couple',navDay:'Our day',navVenue:'The venue',navInvite:'Your invitation',
-      openingEyebrow:'A celebration of faith & love',openingTitle:'A little faith.\nA lifetime of love.',openingDate:'07 JANUARY 2027 · CHENNAI',openInvite:'Open our invitation',scrollCue:'SCROLL INTO OUR CELEBRATION',
+      openingEyebrow:'A celebration of faith & love',openingTitle:'A little faith.\nA lifetime of love.',openingDate:'07 JANUARY 2027 · CHENNAI',openInvite:'Take me inside',
+      ribbonRequest:'Help us open\nthe way?',ribbonScroll:'Scroll to cut the ribbon',ribbonSwipe:'Swipe up to cut the ribbon',ribbonHigher:'Just a little more…',ribbonThanks:'Thank you!\nSee you inside.',ribbonReady:'The way is open',ribbonTap:'or tap the scissors',ribbonPlaying:'A new beginning awaits…',ribbonAction:'Cut the ribbon and open the invitation',meetCouple:'Keep scrolling to meet the couple',
       welcomeEyebrow:'WITH JOYFUL HEARTS, WE WELCOME YOU',groomName:'Ragulbabu',brideName:'Lydiya',welcomeIntro:'Together with our families, we invite you to celebrate the beginning of our forever.',
       thursday:'Thursday',january2027:'January 2027',january:'January',celebrate:'Come celebrate with us',welcomePlace:'Pallavaram, Chennai · 4:00 PM onwards',welcomeBottom:'A DAY OF BLESSINGS. A LIFETIME OF TOGETHERNESS.',
       coupleEyebrow:'TWO HEARTS. ONE BEAUTIFUL PROMISE.',coupleTitle:'The beginning of\nour forever.',viewPhoto:'A closer look',portraitCaption:'By His grace, together.',groomLabel:'THE GROOM',brideLabel:'THE BRIDE',coupleNote:'With the love of our families and the blessings of God, a new chapter begins.',
@@ -31,7 +32,8 @@
     },
     ta: {
       skip:'தொடக்கத்தைத் தவிர்க்கவும்',menu:'பட்டி',navCouple:'மணமக்கள்',navDay:'மணநாள்',navVenue:'நிகழ்விடம்',navInvite:'அழைப்பிதழ்',
-      openingEyebrow:'இறையருளில் இணையும் இதயங்கள்',openingTitle:'இறையருளில் தொடங்கி,\nஇணைந்தே ஒரு வாழ்வு.',openingDate:'07 ஜனவரி 2027 · சென்னை',openInvite:'அழைப்பிதழைத் திறக்கவும்',scrollCue:'எங்கள் கொண்டாட்டத்திற்குள் வாருங்கள்',
+      openingEyebrow:'இறையருளில் இணையும் இதயங்கள்',openingTitle:'இறையருளில் தொடங்கி,\nஇணைந்தே ஒரு வாழ்வு.',openingDate:'07 ஜனவரி 2027 · சென்னை',openInvite:'உள்ளே அழைத்துச் செல்லுங்கள்',
+      ribbonRequest:'வழியைத் திறக்க\nஉதவுகிறீர்களா?',ribbonScroll:'கீழே நகர்த்தி ரிப்பனை வெட்டுங்கள்',ribbonSwipe:'மேலே ஸ்வைப் செய்து ரிப்பனை வெட்டுங்கள்',ribbonHigher:'இன்னும் சிறிது…',ribbonThanks:'நன்றி!\nஉள்ளே வரவேற்கிறோம்.',ribbonReady:'வழி திறந்துவிட்டது',ribbonTap:'அல்லது கத்தரிக்கோலைத் தொடுங்கள்',ribbonPlaying:'ஓர் இனிய தொடக்கம் காத்திருக்கிறது…',ribbonAction:'ரிப்பனை வெட்டி அழைப்பிதழைத் திறக்கவும்',meetCouple:'மணமக்களைச் சந்திக்க கீழே வாருங்கள்',
       welcomeEyebrow:'மகிழ்ச்சி நிறைந்த இதயங்களுடன் வரவேற்கிறோம்',groomName:'ராகுல்பாபு',brideName:'லிடியா',welcomeIntro:'எங்கள் இல்லத் திருமண விழாவில் கலந்து கொண்டு, உங்கள் அன்பையும் ஆசிகளையும் வழங்க அன்புடன் அழைக்கிறோம்.',
       thursday:'வியாழக்கிழமை',january2027:'ஜனவரி 2027',january:'ஜனவரி',celebrate:'எங்கள் மகிழ்வில் இணையுங்கள்',welcomePlace:'பல்லாவரம், சென்னை · மாலை 4:00 மணி முதல்',welcomeBottom:'ஆசிகள் நிறைந்த நாள். அன்பில் இணைந்த வாழ்வு.',
       coupleEyebrow:'இரு இதயங்கள். ஓர் அழகிய உறவு.',coupleTitle:'இணைந்த வாழ்வின்\nஇனிய தொடக்கம்.',viewPhoto:'புகைப்படத்தைப் பார்க்க',portraitCaption:'இறையருளால் இணைகிறோம்.',groomLabel:'மணமகன்',brideLabel:'மணமகள்',coupleNote:'பெற்றோரின் அன்புடனும் இறைவனின் ஆசியுடனும் எங்கள் புதிய பயணம் தொடங்குகிறது.',
@@ -68,6 +70,8 @@
       link.download = 'Ragulbabu-Lydiya-' + (tamil ? 'Tamil' : 'English') + '.pdf';
     });
     try { localStorage.setItem('rl-invitation-language', language); } catch {}
+    guidePhase = -1;
+    requestTick();
     updateCountdown();
   }
   document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => setLanguage(button.dataset.lang)));
@@ -80,6 +84,15 @@
   const scrollCue = $('scroll-cue');
   const bloom = $('gold-bloom');
   const crossLight = $('cross-light');
+  const ribbon = $('pathway-ribbon');
+  const characters = $('pathway-couple');
+  const pathwayStory = $('pathway-story');
+  const coupleRequest = $('couple-request');
+  const ribbonInstruction = $('ribbon-instruction');
+  const waitingCouple = $('couple-waiting'), happyCouple = $('couple-happy');
+  const closedRibbon = $('ribbon-closed'), cutRibbon = $('ribbon-cut');
+  const scissors = $('ribbon-scissors');
+  let guidePhase = -1, guidedFrame = 0, guidePlaying = false;
   let reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   try { const preference = localStorage.getItem('rl-invitation-motion'); if (preference !== null) reduce = preference === 'reduced'; } catch {}
   let dimensions = {};
@@ -87,14 +100,85 @@
   const smooth = (a, b, v) => { const t = clamp((v-a)/(b-a)); return t*t*(3-2*t); };
   function measure() {
     const w = innerWidth, h = innerHeight;
-    const cover = Math.max(w / 1586, h / 992);
-    const rw = 1586 * cover, rh = 992 * cover;
+    const portrait=w<=760;
+    const artwork=portrait
+      ? {src:'assets/anime-church-narrow-phone.webp',width:1024,height:1536,crossX:.528,crossY:.295,pathX:.517,roofY:.184,positionX:.5}
+      : {src:'assets/anime-church-narrow-wide.webp',width:1586,height:992,crossX:.614,crossY:.217,pathX:.608,roofY:.04,positionX:.6};
+    const churchImage=$('church-image');
+    if(scene.dataset.artwork!==artwork.src){churchImage.src=asset(artwork.src);scene.dataset.artwork=artwork.src;}
+    // Reserve the header's full height before fitting the illustrated building.
+    const safeTop=Math.max(portrait?68:86,$('header').offsetHeight)+12;
+    const imageHeight=Math.max(1,h-safeTop);
+    opening.style.setProperty('--church-safe-top',safeTop+'px');
+    const cover = Math.max(w / artwork.width, imageHeight / artwork.height);
+    const rw = artwork.width * cover, rh = artwork.height * cover;
+    const imageLeft=(w-rw)*artwork.positionX;
+    // When a wide viewport needs a crop, keep the rooftop below the header.
+    const imageTop=Math.min(0,Math.max((imageHeight-rh)*.5,12-rh*artwork.roofY));
+    const positionY=Math.abs(imageHeight-rh)>.5?imageTop/(imageHeight-rh):.5;
+    scene.style.setProperty('--church-object-position',(artwork.positionX*100)+'% '+(positionY*100)+'%');
+    opening.style.setProperty('--pathway-center',(imageLeft+rw*artwork.pathX)+'px');
     dimensions = {
-      w,h, x:(w-rw)*.6+rw*.604, y:(h-rh)*.5+rh*.232,
+      w,h, x:imageLeft+rw*artwork.crossX, y:safeTop+imageTop+rh*artwork.crossY,
       distance:Math.max(1,opening.offsetHeight-h), top:opening.offsetTop
     };
-    scene.style.transformOrigin = dimensions.x + 'px ' + dimensions.y + 'px';
+    scene.style.transformOrigin = dimensions.x + 'px ' + (dimensions.y-safeTop) + 'px';
     requestTick();
+  }
+  function updateGuide(p) {
+    // Both character frames and both ribbon frames stay on the same ground plane.
+    const cut=smooth(.055,.115,p),happy=smooth(.105,.17,p);
+    closedRibbon.style.opacity=String(1-cut);cutRibbon.style.opacity=String(cut);
+    waitingCouple.style.opacity=String(1-happy);happyCouple.style.opacity=String(happy);
+    scissors.style.opacity=String(1-smooth(.11,.16,p));
+    const bladeAngle=18*(1-smooth(.015,.085,p));
+    $('scissor-left').style.transform='rotate('+bladeAngle+'deg)';
+    $('scissor-right').style.transform='rotate('+(-bladeAngle)+'deg)';
+    pathwayStory.style.opacity=String(1-smooth(.31,.39,p));
+    coupleRequest.style.opacity=String(1-smooth(.29,.36,p));
+    ribbonInstruction.style.opacity=String(1-smooth(.28,.35,p));
+    scrollCue.inert=p>.29;
+    ribbon.setAttribute('aria-hidden',String(p>.29));
+    const phase=p<.035?0:p<.115?1:2;
+    if (guidePhase===phase) return;
+    guidePhase=phase;
+    scrollCue.setAttribute('aria-label',text[language].ribbonAction);
+    const keys=phase===0?['ribbonScroll','ribbonSwipe']:phase===1?['ribbonHigher','ribbonHigher']:['ribbonReady','ribbonReady'];
+    for(const [idx,selector] of ['.instruction-mouse','.instruction-touch'].entries()) {
+      const label=$('ribbon-label').querySelector(selector);label.dataset.i18n=keys[idx];label.textContent=text[language][keys[idx]];
+    }
+    const requestKey=phase===2?'ribbonThanks':'ribbonRequest';
+    $('couple-line').dataset.i18n=requestKey;$('couple-line').textContent=text[language][requestKey];
+    const captionKey=guidePlaying?'ribbonPlaying':'ribbonTap';
+    $('ribbon-caption').dataset.i18n=captionKey;$('ribbon-caption').textContent=text[language][captionKey];
+  }
+  function stopGuidedEntry() {
+    if (guidedFrame) cancelAnimationFrame(guidedFrame);
+    guidedFrame=0;guidePlaying=false;guidePhase=-1;
+    scrollCue.removeAttribute('aria-busy');
+    document.body.classList.remove('journey-playing');requestTick();
+  }
+  function enterInvitation(event) {
+    if (reduce) return;
+    event.preventDefault();
+    if (guidePlaying) return;
+    guidePlaying=true;guidePhase=-1;
+    document.body.classList.add('journey-playing');
+    scrollCue.setAttribute('aria-busy','true');
+    const start=scrollY,target=dimensions.top+dimensions.distance*.97;
+    const duration=Math.max(850,Math.min(4200,Math.abs(target-start)/dimensions.distance*4200));
+    const started=performance.now();
+    function advance(now) {
+      const t=clamp((now-started)/duration),ease=t*t*(3-2*t);
+      window.scrollTo({top:start+(target-start)*ease,behavior:'instant'});
+      if (t<1) guidedFrame=requestAnimationFrame(advance);
+      else {
+        stopGuidedEntry();
+        window.scrollTo({top:target,behavior:'instant'});
+        requestAnimationFrame(()=>{window.scrollTo({top:target,behavior:'instant'});requestTick();});
+      }
+    }
+    guidedFrame=requestAnimationFrame(advance);requestTick();
   }
   let frame = 0;
   function requestTick() { if (!frame) frame = requestAnimationFrame(paint); }
@@ -106,38 +190,39 @@
     $('header').classList.toggle('scrolled', scrollY > 50);
     if (reduce) return;
     const p = clamp((scrollY-top)/distance);
-    const camera = smooth(0,.78,p);
-    const travel = smooth(0,.62,p);
+    updateGuide(p);
+    const camera = smooth(.42,.84,p);
+    const travel = smooth(.42,.8,p);
     const scale = Math.exp(camera*Math.log(16));
     const tx = (w*.5-x)*travel;
     const ty = (h*.43-y)*travel;
     scene.style.transform = 'translate3d(' + tx + 'px,' + ty + 'px,0) scale(' + scale + ')';
-    scene.style.opacity = String(1-smooth(.72,.91,p));
-    copy.style.opacity = String(1-smooth(.015,.24,p));
+    scene.style.opacity = String(1-smooth(.85,.96,p));
+    copy.style.opacity = String(1-smooth(.16,.28,p));
     copy.style.transform = 'translateY(' + (w <= 760 ? -p*90 : -41-p*60) + (w <= 760 ? 'px)' : '%)');
     copy.inert = p > .18;
     copy.setAttribute('aria-hidden',String(p > .25));
-    $('scene-wash').style.opacity = String(1-smooth(.1,.4,p));
-    scrollCue.style.opacity = String(1-smooth(.01,.17,p));
+    $('scene-wash').style.opacity = String(1-smooth(.35,.55,p));
     crossLight.style.left = (x+tx) + 'px';
     crossLight.style.top = (y+ty) + 'px';
-    crossLight.style.opacity = String(smooth(.12,.42,p)*(1-smooth(.63,.84,p)));
+    crossLight.style.opacity = String(smooth(.48,.68,p)*(1-smooth(.82,.95,p)));
     crossLight.style.transform = 'translate(-50%,-50%) scale(' + (1+camera*7) + ')';
-    bloom.style.opacity = String(smooth(.48,.73,p)*(1-smooth(.78,.95,p))*.9);
-    const growth = smooth(.51,.88,p);
+    bloom.style.opacity = String(smooth(.72,.88,p)*(1-smooth(.92,.99,p))*.9);
+    const growth = smooth(.78,.95,p);
     const unit = growth*growth*Math.max(w,h)*1.8;
     const cx = x+tx, cy = y+ty;
     const points = [[cx-unit*.5,cy-unit*3],[cx+unit*.5,cy-unit*3],[cx+unit*.5,cy-unit*.5],[cx+unit*3,cy-unit*.5],[cx+unit*3,cy+unit*.5],[cx+unit*.5,cy+unit*.5],[cx+unit*.5,cy+unit*6],[cx-unit*.5,cy+unit*6],[cx-unit*.5,cy+unit*.5],[cx-unit*3,cy+unit*.5],[cx-unit*3,cy-unit*.5],[cx-unit*.5,cy-unit*.5]];
     portal.style.clipPath = 'polygon(' + points.map(point => point[0]+'px '+point[1]+'px').join(',') + ')';
-    const welcomeProgress = smooth(.69,.92,p);
+    const welcomeProgress = smooth(.88,.98,p);
     welcome.style.opacity = String(welcomeProgress);
     welcome.style.transform = 'translateY(' + (1-welcomeProgress)*24 + 'px)';
-    portal.classList.toggle('is-visible',p>.78);
-    portal.inert = p < .78;
-    portal.setAttribute('aria-hidden',String(p<.69));
-    $('opening-dust').style.opacity = String(1-smooth(.58,.83,p));
+    portal.classList.toggle('is-visible',p>.94);
+    portal.inert = p < .94;
+    portal.setAttribute('aria-hidden',String(p<.88));
+    $('opening-dust').style.opacity = String(1-smooth(.82,.96,p));
   }
   function applyMotion() {
+    stopGuidedEntry();
     document.body.classList.toggle('reduced-motion',reduce);
     $('motion-toggle').setAttribute('aria-pressed',String(reduce));
     $('motion-toggle').setAttribute('aria-label',reduce ? 'Enable cinematic animation' : 'Reduce animation');
@@ -153,9 +238,12 @@
     if (inOpening) window.scrollTo({top:0,behavior:'instant'});
     toast(text[language][reduce?'motionOn':'motionOff']);
   });
-  $('enter-invitation').addEventListener('click',event => {
-    if (!reduce) { event.preventDefault();window.scrollTo({top:dimensions.top+dimensions.distance*.96,behavior:'smooth'}); }
-  });
+  $('enter-invitation').addEventListener('click',enterInvitation);
+  scrollCue.addEventListener('click',enterInvitation);
+  const takeControl=()=>stopGuidedEntry();
+  window.addEventListener('wheel',takeControl,{passive:true});
+  window.addEventListener('touchstart',takeControl,{passive:true});
+  window.addEventListener('keydown',event=>{if(['ArrowDown','ArrowUp','PageDown','PageUp','Home','End',' ','Escape'].includes(event.key))takeControl();});
   const menu = $('menu-toggle');
   const nav = $('main-nav');
   const closeMenu = () => {menu.setAttribute('aria-expanded','false');nav.classList.remove('open');};

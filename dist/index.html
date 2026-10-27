@@ -7,7 +7,7 @@
   <meta name="description" content="Ragulbabu and Lydiya invite you to their wedding and reception on 7 January 2027, 4:00 PM onwards, at New Life Celebration Center, Pallavaram, Chennai.">
   <title>Ragulbabu & Lydiya · A Celebration of Love</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="preload" as="image" href="assets/church-front.webp">
+  <link rel="preload" as="image" href="assets/anime-church-narrow-wide.webp">
   <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -32,7 +32,7 @@
   <main>
     <section class="opening" id="opening" aria-label="A cinematic welcome">
       <div class="opening-stage">
-        <div class="church-scene" id="church-scene"><img id="church-image" src="assets/church-front.webp" alt="A front-facing view of the glass church and its illuminated golden Christian cross" width="1586" height="992" fetchpriority="high"></div>
+        <div class="church-scene" id="church-scene"><img id="church-image" src="assets/anime-church-narrow-wide.webp" alt="The full illustrated church and glowing Christian cross, with a narrow pathway through the green lawn" width="1586" height="992" fetchpriority="high"></div>
         <div class="scene-wash" id="scene-wash" aria-hidden="true"></div>
         <div class="opening-copy" id="opening-copy">
           <p class="eyebrow"><span class="tiny-line"></span><span data-i18n="openingEyebrow">A celebration of faith & love</span></p>
@@ -44,11 +44,22 @@
         <div class="cross-light" id="cross-light" aria-hidden="true"></div>
         <div class="gold-bloom" id="gold-bloom" aria-hidden="true"></div>
         <div class="opening-dust" id="opening-dust" aria-hidden="true"></div>
-        <div class="scroll-cue" id="scroll-cue" aria-hidden="true"><span data-i18n="scrollCue">SCROLL INTO OUR CELEBRATION</span><i></i></div>
+        <div class="pathway-story" id="pathway-story">
+          <div class="pathway-glow" aria-hidden="true"></div>
+          <div class="pathway-couple" id="pathway-couple"><img class="couple-waiting" id="couple-waiting" src="assets/anime-couple.webp" width="1024" height="1536" alt="Anime characters based on Ragulbabu and Lydiya, welcoming you with their bouquet"><img class="couple-happy" id="couple-happy" src="assets/anime-couple-happy.webp" width="1024" height="1536" alt="" aria-hidden="true"></div>
+          <div class="couple-request" id="couple-request"><p class="pathway-names"><span data-i18n="groomName">Ragulbabu</span> <em>&</em> <span data-i18n="brideName">Lydiya</span></p><p id="couple-line" data-i18n="ribbonRequest">Help us open<br>the way?</p><svg viewBox="0 0 60 65" aria-hidden="true"><path d="M7 4c45-4 47 31 25 48m-1-12 1 13 13-4"/></svg></div>
+          <div class="pathway-ribbon" id="pathway-ribbon" aria-hidden="false">
+            <img class="anime-ribbon" id="ribbon-closed" src="assets/anime-floral-ribbon.webp" width="2098" height="749" alt="" aria-hidden="true">
+            <img class="anime-ribbon ribbon-cut" id="ribbon-cut" src="assets/anime-ribbon-cut.webp" width="2100" height="749" alt="" aria-hidden="true">
+            <svg class="ribbon-scissors" id="ribbon-scissors" viewBox="0 0 48 48" aria-hidden="true"><g id="scissor-left"><circle cx="13" cy="36" r="6"/><path d="m17 31 18-23"/></g><g id="scissor-right"><circle cx="35" cy="36" r="6"/><path d="M31 31 13 8"/></g><circle cx="24" cy="24" r="2"/></svg>
+            <button class="ribbon-bow" id="scroll-cue" type="button" aria-label="Cut the ribbon and open the invitation" aria-controls="welcome-portal" aria-describedby="ribbon-instruction"></button>
+          </div>
+          <div class="ribbon-instruction" id="ribbon-instruction"><p id="ribbon-label"><span class="instruction-mouse" data-i18n="ribbonScroll">Scroll to cut the ribbon</span><span class="instruction-touch" data-i18n="ribbonSwipe">Swipe up to cut the ribbon</span></p><span class="ribbon-caption" id="ribbon-caption" data-i18n="ribbonTap">or tap the scissors</span><span class="ribbon-down" aria-hidden="true">↓</span></div>
+        </div>
 
         <div class="welcome-portal" id="welcome-portal">
-          <img class="welcome-flower flower-one" src="assets/bouquet.webp" width="1000" height="1000" alt="" aria-hidden="true">
-          <img class="welcome-flower flower-two" src="assets/bouquet.webp" width="1000" height="1000" alt="" aria-hidden="true">
+          <img class="welcome-flower flower-one" src="assets/anime-bouquet.webp" width="1000" height="1000" alt="" aria-hidden="true">
+          <img class="welcome-flower flower-two" src="assets/anime-bouquet.webp" width="1000" height="1000" alt="" aria-hidden="true">
           <div class="welcome-content" id="welcome-content">
             <svg class="welcome-cross" viewBox="0 0 24 38" aria-hidden="true"><path d="M10.5 0h3v11h9v3h-9v24h-3V14h-9v-3h9z"/></svg>
             <p class="eyebrow" data-i18n="welcomeEyebrow">WITH JOYFUL HEARTS, WE WELCOME YOU</p>
@@ -58,7 +69,7 @@
             <a class="button primary" href="#day"><span data-i18n="celebrate">Come celebrate with us</span><span aria-hidden="true">↗</span></a>
             <p class="welcome-place" data-i18n="welcomePlace">Pallavaram, Chennai · 4:00 PM onwards</p>
           </div>
-          <div class="welcome-bottom" aria-hidden="true"><span data-i18n="welcomeBottom">A DAY OF BLESSINGS. A LIFETIME OF TOGETHERNESS.</span><span>↓</span></div>
+          <a class="welcome-bottom" href="#couple"><span data-i18n="meetCouple">Keep scrolling to meet the couple</span><span aria-hidden="true">↓</span></a>
         </div>
       </div>
     </section>
@@ -68,7 +79,7 @@
       <div class="couple-grid">
         <figure class="couple-portrait reveal">
           <div class="portrait-halo" aria-hidden="true"></div>
-          <button class="portrait-button artwork" id="portrait-button" aria-label="View the couple portrait"><img id="couple-image" src="assets/couple-bouquet-illustration.webp" width="867" height="1300" alt="An illustration of Ragulbabu and Lydiya holding their bouquet" loading="lazy"><span class="photo-inspect"><span data-i18n="viewPhoto">A closer look</span><span aria-hidden="true">↗</span></span></button>
+          <button class="portrait-button artwork" id="portrait-button" aria-label="View the couple portrait"><img id="couple-image" src="assets/couple-bouquet-illustration.webp" width="867" height="1300" alt="A watercolor illustration of Ragulbabu and Lydiya holding their bouquet" loading="lazy"><span class="photo-inspect"><span data-i18n="viewPhoto">A closer look</span><span aria-hidden="true">↗</span></span></button>
           <figcaption class="portrait-caption"><span>R + L</span><span data-i18n="portraitCaption">By His grace, together.</span></figcaption>
         </figure>
         <div class="couple-details">
@@ -104,7 +115,7 @@
     </section>
 
     <section class="family-section">
-      <img class="family-flower" src="assets/bouquet.webp" width="1000" height="1000" alt="" loading="lazy" aria-hidden="true">
+      <img class="family-flower" src="assets/anime-bouquet.webp" width="1000" height="1000" alt="" loading="lazy" aria-hidden="true">
       <div class="family-content reveal"><p class="eyebrow" data-i18n="familyEyebrow">WITH OPEN HEARTS & OPEN ARMS</p><h2 data-i18n="familyTitle">Our families\nwelcome you.</h2><div class="family-list"><p data-i18n="familyOne">Mr. Nagarajan M.A.</p><p data-i18n="familyTwo">Mrs. Sumathi Nagarajan M.A.; CNI (ICDS SW), Rt.</p><p data-i18n="familyThree">Mr. Rakeshbabu B.Tech; Vice President (BNY Mellon)</p><p data-i18n="familyFour">Mr. &amp; Mrs. Lordson Joshua and family</p></div><p class="family-welcome" data-i18n="familyWelcome">Join us with your love, prayers, and blessings.</p></div>
     </section>
 
@@ -114,8 +125,8 @@
     </section>
 
     <footer class="site-footer">
-      <img class="footer-flower footer-flower-left" src="assets/bouquet.webp" width="1000" height="1000" alt="" loading="lazy" aria-hidden="true">
-      <img class="footer-flower footer-flower-right" src="assets/bouquet.webp" width="1000" height="1000" alt="" loading="lazy" aria-hidden="true">
+      <img class="footer-flower footer-flower-left" src="assets/anime-bouquet.webp" width="1000" height="1000" alt="" loading="lazy" aria-hidden="true">
+      <img class="footer-flower footer-flower-right" src="assets/anime-bouquet.webp" width="1000" height="1000" alt="" loading="lazy" aria-hidden="true">
       <p class="eyebrow reveal" data-i18n="footerEyebrow">WE CAN’T WAIT TO SEE YOU</p><p class="footer-names reveal">Ragulbabu <em>&</em> Lydiya</p><p data-i18n="footerDate">7 January 2027 · Pallavaram, Chennai</p><button class="text-link" id="share-button"><span data-i18n="share">Share the joy</span><span aria-hidden="true">↗</span></button><a class="back-top" href="#opening" data-i18n="backTop">Back to the beginning ↑</a>
     </footer>
   </main>

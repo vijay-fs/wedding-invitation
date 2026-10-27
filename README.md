@@ -1,6 +1,6 @@
 # Ragulbabu & Lydiya — standalone wedding invitation
 
-The finished single file is `../output/site/Ragulbabu-Lydiya-Wedding.html` (about 19.7 MB). It contains the styles, JavaScript, fonts, artwork, couple illustration, and all three invitation PDFs. No installation or build is needed to view that file in a modern browser. The directions link opens Google Maps and needs an internet connection.
+The finished single file is `../output/site/Ragulbabu-Lydiya-Wedding.html` (about 21.8 MB). It contains the styles, JavaScript, fonts, artwork, couple illustration, and all three invitation PDFs. No installation or build is needed to view that file in a modern browser. The directions link opens Google Maps and needs an internet connection.
 
 The design follows the final English and Tamil printed invitations: 7 January 2027, 4:00 PM onwards, Wedding & Reception, New Life Celebration Center (NLCC), Pallavaram, Chennai. Qualifications, employers, family names, and respectful Tamil titles are included. The live Vercel website has not been changed.
 
@@ -10,10 +10,10 @@ The PDF names match the website: Great Vibes for English, Noto Sans Tamil for Ta
 
 ## Experience
 
-- Scroll toward the illuminated church cross, then through a growing cross into a floral welcome.
+- Miniature anime characters and a miniature floral ribbon are confined to the church pathway; the building remains the dominant image. The background reserves the full navigation height plus breathing room, with a roof-safe crop and separate portrait artwork for phones. The illuminated cross anchor is recalculated for each artwork, and the miniature vignette follows the projected pathway center. The character pair is about 69-111 pixels tall on desktop and 72-81 pixels tall on phones, with fixed feet. Scrolling closes illustrated scissors and dissolves the intact ribbon into cut ends resting beside the side bouquets. The couple crossfades to a joyful smile and thumbs-up without changing position or scale. Only after the characters have faded out does the camera move toward the cross and reveal the matching anime flowers. The scroll hint is deliberately tiny, at 8-9 pixels. The scissors are also a keyboard-accessible tap target for a guided entrance. English/Tamil labels, touch-specific wording and reduced motion are supported.
 - Fresh ivory, teal, magenta, gold, lime, yellow, and white from the printed invitation and bouquet reference.
 - English/Tamil language switch, mobile menu, and a reduced-animation option that also respects the device setting.
-- The new watercolor illustration from the bouquet photo is the only couple portrait, with a larger preview.
+- The couple section and its enlarged preview use the previous watercolor/gouache bouquet illustration. The miniature opening scene keeps its anime characters and happy reaction keyframe.
 - Wedding countdown, calendar download, venue directions, and the latest English, Tamil, and bilingual PDF downloads.
 - Native sharing when supported; otherwise the invitation text is copied. No RSVP backend or guest data collection is included.
 
@@ -23,11 +23,25 @@ The PDF names match the website: Great Vibes for English, Noto Sans Tamil for Ta
 
 For a local preview, serve `dist/` using a static HTTP server and open `standalone.html`. The app preview was tested through localhost; direct `file://` navigation is blocked by the app browser’s protocol policy. The packaged HTML contains no external scripts, stylesheets, font requests, or local asset references.
 
+## Deploy to Vercel
+
+Deploy this `wedding-site` directory. Its `vercel.json` selects the Other framework preset, skips the build step, and serves the existing `dist/` directory. The home page is `dist/index.html`; artwork, fonts and the latest invitation PDFs are included in `dist/assets/`. No dependency installation or environment variables are required.
+
+If importing the `wedding-site` repository, leave Vercel's Root Directory as `.`. If importing its parent `Invitation` directory instead, set Root Directory to `wedding-site`. See [Vercel's static-site build settings](https://vercel.com/docs/builds/configure-a-build#skip-build-step).
+
 ## Artwork and sources
 
-The church, bouquet, venue illustration, and couple illustration cutout were made with the built-in ImageGen tool. The church and arena are artistic renderings based on the supplied references. The displayed illustration is based on the new user-supplied bouquet photo, with the room and other people removed. The transparent illustration is fitted inside the portrait card and enlarged preview; there is no photograph option.
+The anime church, couple, floral ribbon, bouquet, and venue illustration were made with the built-in ImageGen tool. The opening now uses a coherent cel-shaded anime art direction for every illustrated layer; originals and the prompt set are saved in `design/anime-*.png` and `design/anime-scene-prompts.txt`. The church and arena are artistic renderings based on the supplied references. The anime couple is based on the new user-supplied bouquet photo, with recognizable facial features, matching clothing and a welcoming hand gesture. The character art has actual transparency and complete feet. The transparent illustration is fitted inside the portrait card and enlarged preview; there is no photograph option.
 
-- `dist/assets/church-front.webp` — front-facing church rendering; original in `design/church-front-original.png`.
+- `dist/assets/anime-church-narrow-wide.webp` — landscape church with narrower pedestrian path; original in `design/anime-church-narrow-wide.png`.
+- `dist/assets/anime-church-narrow-phone.webp` — portrait framing showing the whole church and narrow pathway on phones; original in `design/anime-church-narrow-phone.png`.
+- `dist/assets/anime-church.webp` — previous anime church background, retained as a reference.
+- `dist/assets/anime-couple.webp` — new full-body anime characters preserving the supplied faces and outfits; original in `design/anime-couple.png`.
+- `dist/assets/anime-floral-ribbon.webp` — intact anime floral ribbon; original in `design/anime-floral-ribbon.png`.
+- `dist/assets/anime-ribbon-cut.webp` — cut ribbon ends resting at the side bouquets; original in `design/anime-ribbon-cut.png`.
+- `dist/assets/anime-couple-happy.webp` — aligned happy expression and thumbs-up keyframe; original in `design/anime-couple-happy.png`.
+- `dist/assets/anime-bouquet.webp` — matching anime flowers for the welcome reveal; original in `design/anime-bouquet.png`.
+- `dist/assets/church-front.webp` — previous church rendering retained as a reference.
 - `dist/assets/bouquet.webp` — transparent floral arrangement using the supplied white lilies, yellow and magenta chrysanthemums, lime buttons, and green leaves; original in `design/bouquet-original.png`.
 - `dist/assets/venue-illustration.webp` — arena and tower on green lawn with a pathway; original in `design/venue-original.png`.
 - `dist/assets/couple-bouquet-illustration.webp` — the default watercolor/gouache portrait based on the new bouquet photo; full-resolution transparent PNG in `design/couple-bouquet-illustration.png`, made with the built-in ImageGen tool.
@@ -42,7 +56,7 @@ Fonts are Cormorant Garamond, Great Vibes, DM Sans, and Noto Sans Tamil. Their S
 
 - JavaScript syntax checked with Node.
 - Desktop layout reviewed at 1440 × 960, phone layout at 390 × 844, and the app’s 689 × 763 preview size.
-- Cross zoom, floral reveal, English/Tamil switch, motion toggle, mobile menu, portrait switch, and dialog open/Escape-close checked in the browser.
+- Ribbon interaction, cross zoom, floral reveal, English/Tamil switch, motion toggle, mobile menu, and dialog open/Escape-close checked in the browser.
 - Latest bilingual PDF downloaded from the standalone bundle and matched byte for byte against the current combined PDF. All three embedded PDFs and both previews match their latest printed sources.
 - Calendar downloaded and verified for 7 January 2027 at 16:00 IST; calendar line folding checked.
 - No horizontal overflow or broken loaded images in the packaged app preview. Embedded asset decoding checked.
