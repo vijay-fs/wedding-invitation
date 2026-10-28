@@ -77,6 +77,7 @@
   document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => setLanguage(button.dataset.lang)));
   try { language = localStorage.getItem('rl-invitation-language') || 'en'; } catch {}
   const opening = $('opening');
+  const stage = opening.querySelector('.opening-stage');
   const scene = $('church-scene');
   const copy = $('opening-copy');
   const portal = $('welcome-portal');
@@ -96,18 +97,24 @@
   let reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   try { const preference = localStorage.getItem('rl-invitation-motion'); if (preference !== null) reduce = preference === 'reduced'; } catch {}
   let dimensions = {};
+  let measureFrame = 0, headerWidth = 0, headerSpace = 0;
   const clamp = (v, min = 0, max = 1) => Math.min(max, Math.max(min, v));
   const smooth = (a, b, v) => { const t = clamp((v-a)/(b-a)); return t*t*(3-2*t); };
   function measure() {
-    const w = innerWidth, h = innerHeight;
+    // The rendered stage is authoritative: mobile browser chrome can change
+    // innerHeight independently of CSS viewport units during a swipe.
+    const w = stage.clientWidth, h = stage.clientHeight;
     const portrait=w<=760;
+    stage.dataset.mobile = String(portrait && !reduce);
     const artwork=portrait
       ? {src:'assets/anime-church-narrow-phone.webp',width:1024,height:1536,crossX:.528,crossY:.295,pathX:.517,pathTop:.735,pathFarWidth:.073,pathNearWidth:.444,positionX:.5}
       : {src:'assets/anime-church-narrow-wide.webp',width:1586,height:992,crossX:.614,crossY:.217,pathX:.608,pathTop:.84,pathFarWidth:.063,pathNearWidth:.236,positionX:.6};
     const churchImage=$('church-image');
     if(scene.dataset.artwork!==artwork.src){churchImage.src=asset(artwork.src);scene.dataset.artwork=artwork.src;}
     // Reserve the header's full height before fitting the illustrated building.
-    const safeTop=Math.max(portrait?68:86,$('header').offsetHeight)+12;
+    if (w !== headerWidth) { headerWidth=w;headerSpace=0; }
+    headerSpace=Math.max(headerSpace,$('header').offsetHeight);
+    const safeTop=Math.max(portrait?68:86,headerSpace)+12;
     const imageHeight=Math.max(1,h-safeTop);
     opening.style.setProperty('--church-safe-top',safeTop+'px');
     // Fit the full height so laptop aspect ratios cannot crop away the walkway.
@@ -135,10 +142,15 @@
     opening.style.setProperty('--pathway-dialogue-bottom',(h-feetY+figureHeight+6)+'px');
     dimensions = {
       w,h, x:imageLeft+rw*artwork.crossX, y:safeTop+rh*artwork.crossY,
-      distance:Math.max(1,opening.offsetHeight-h), top:opening.offsetTop
+      distance:Math.max(1,opening.offsetHeight-h), top:opening.offsetTop,
+      mobile:portrait && !reduce
     };
     scene.style.transformOrigin = dimensions.x + 'px ' + (dimensions.y-safeTop) + 'px';
     requestTick();
+  }
+  function requestMeasure() {
+    if (measureFrame) return;
+    measureFrame=requestAnimationFrame(()=>{measureFrame=0;measure();});
   }
   function updateGuide(p) {
     // Both character frames and both ribbon frames stay on the same ground plane.
@@ -199,7 +211,11 @@
   function requestTick() { if (!frame) frame = requestAnimationFrame(paint); }
   function paint() {
     frame = 0;
-    const { w,h,x,y,distance,top } = dimensions;
+    const { w,h,x,y,distance,top,mobile } = dimensions;
+    // Keep the mobile stage attached to the screen from the very first swipe.
+    // Release it at the end so normal document scrolling continues in both directions.
+    const pin = mobile ? (scrollY<top?'before':scrollY<=top+distance?'active':'after') : '';
+    if (stage.dataset.pin !== pin) stage.dataset.pin = pin;
     const pageProgress = clamp(scrollY / Math.max(1,document.documentElement.scrollHeight-h));
     document.querySelector('.reading-progress i').style.transform = 'scaleX(' + pageProgress + ')';
     $('header').classList.toggle('scrolled', scrollY > 50);
@@ -267,8 +283,9 @@
   document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu();});
   document.addEventListener('click',event=>{if(!event.target.closest('.site-header'))closeMenu();});
   window.addEventListener('scroll',requestTick,{passive:true});
-  window.addEventListener('resize',measure,{passive:true});
-  if (window.visualViewport) window.visualViewport.addEventListener('resize',measure,{passive:true});
+  window.addEventListener('resize',requestMeasure,{passive:true});
+  if (window.visualViewport) window.visualViewport.addEventListener('resize',requestMeasure,{passive:true});
+  if ('ResizeObserver' in window) new ResizeObserver(requestMeasure).observe(stage);
   for (let i=0;i<22;i++) {
     const dust=document.createElement('i');
     dust.style.left=((i*37.7)%100)+'%';dust.style.top=((i*21.3)%100)+'%';
@@ -310,9 +327,10 @@
   dialog.addEventListener('close',()=>{document.body.style.overflow='';});
   $('share-button').addEventListener('click',async()=>{
     const details=language==='ta'?'ராகுல்பாபு & லிடியா\nதிருமணம் மற்றும் வரவேற்பு\n7 ஜனவரி 2027 · மாலை 4:00 மணி முதல்\nNew Life Celebration Center (NLCC), பல்லாவரம், சென்னை.':'Ragulbabu & Lydiya\nWedding & Reception\n7 January 2027 · 4:00 PM onwards\nNew Life Celebration Center (NLCC), Pallavaram, Chennai.';
+    const invitationURL=document.querySelector('link[rel="canonical"]').href;
     try {
-      if (navigator.share) {await navigator.share({title:'Ragulbabu & Lydiya',text:details});return;}
-      await navigator.clipboard.writeText(details);toast(text[language].copySuccess);
+      if (navigator.share) {await navigator.share({title:'Ragulbabu & Lydiya | Wedding Invitation',text:details,url:invitationURL});return;}
+      await navigator.clipboard.writeText(details+'\n\n'+invitationURL);toast(text[language].copySuccess);
     } catch(error) {if(error.name!=='AbortError')toast(text[language].copyFallback);}
   });
   const audio=$('wedding-audio');

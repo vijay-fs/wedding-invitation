@@ -13,9 +13,10 @@ The PDF names match the website: Great Vibes for English, Noto Sans Tamil for Ta
 - Miniature anime characters and a miniature floral ribbon are confined to the church pathway; the building remains the dominant image. The background reserves the full navigation height plus breathing room, fits the complete artwork height without cropping the foreground, and uses separate portrait artwork for phones. On wide laptops, the illustration sits to the right and fades into the paper background at its left edge. The illuminated cross anchor is recalculated for each artwork, and the miniature vignette follows the projected pathway center. The character pair scales to the available foreground pathway, with its full height below the doorstep and fixed feet. Both the ribbon width and its position are projected from the same walkway geometry. Scrolling closes illustrated scissors and dissolves the intact ribbon into cut ends resting beside the side bouquets. The couple crossfades to a joyful smile and thumbs-up without changing position or scale. Only after the characters have faded out does the camera move toward the cross and reveal the matching anime flowers. The scroll hint is deliberately tiny, at 8-9 pixels. The scissors are also a keyboard-accessible tap target for a guided entrance. English/Tamil labels, touch-specific wording and reduced motion are supported.
 - Fresh ivory, teal, magenta, gold, lime, yellow, and white from the printed invitation and bouquet reference.
 - English/Tamil language switch, mobile menu, and a reduced-animation option that also respects the device setting.
+- The mobile opening stays pinned to the viewport while guests scroll, then releases into the rest of the invitation. Its height follows the visible browser area, while the animation's scroll distance stays independent of the address bar opening or closing. Artwork measurements use the rendered stage rather than a separate window height, and resize updates are batched into animation frames.
 - The couple section and its enlarged preview use the previous watercolor/gouache bouquet illustration. The miniature opening scene keeps its anime characters and happy reaction keyframe.
 - Wedding countdown, calendar download, venue directions, and the latest English, Tamil, and bilingual PDF downloads.
-- Native sharing when supported; otherwise the invitation text is copied. No RSVP backend or guest data collection is included.
+- Native sharing includes the public website link and invitation details; otherwise both are copied. No RSVP backend or guest data collection is included.
 
 ## Editable source
 
@@ -28,6 +29,14 @@ For a local preview, serve `dist/` using a static HTTP server and open `standalo
 Deploy this `wedding-site` directory. Its `vercel.json` selects the Other framework preset, skips the build step, and serves the existing `dist/` directory. The home page is `dist/index.html`; artwork, fonts and the latest invitation PDFs are included in `dist/assets/`. No dependency installation or environment variables are required.
 
 If importing the `wedding-site` repository, leave Vercel's Root Directory as `.`. If importing its parent `Invitation` directory instead, set Root Directory to `wedding-site`. See [Vercel's static-site build settings](https://vercel.com/docs/builds/configure-a-build#skip-build-step).
+
+## Sharing preview
+
+The page delivers its title, description, canonical URL, Open Graph tags, and large-image Twitter Card tags directly in the initial HTML, without JavaScript. The 1200 × 630 JPEG in `dist/assets/wedding-social-preview-v1.jpg` matches the invitation and uses the existing couple illustration, church, flowers, red cross, names, date, time, and venue. Editable artwork is in `design/share-card.html` (serve the project directory to view it). Metadata follows the [Open Graph protocol](https://ogp.me/).
+
+The configured public URL is `https://wedding-invitation-sigma-roan.vercel.app/`. If the domain changes, update the absolute URLs in `dist/index.html` and rebuild the standalone file. The Share button reads this canonical URL. The share image deliberately stays a public HTTPS URL in both versions; social crawlers cannot use an offline HTML file or an embedded data URI as a link preview.
+
+Redeploy the `wedding-site` folder before checking shares from the public URL. Individual apps control how much of the card they show and may retain an earlier cached preview; the metadata does not force an image card in every Instagram surface. The deployed image endpoint must remain publicly readable without sign-in. For later artwork revisions, change the versioned JPEG filename and its metadata URLs to avoid reusing a cached image.
 
 ## Artwork and sources
 
@@ -55,6 +64,7 @@ Fonts are Cormorant Garamond, Great Vibes, DM Sans, and Noto Sans Tamil. Their S
 ## Verification
 
 - JavaScript syntax checked with Node.
+- Mobile scrolling reviewed at 390 × 744 and 390 × 820: the stage stays at the top during the first ribbon-cut scroll, characters change expression without moving, the scene releases at its end, and reverse scrolling pins it again. Reduced motion still opens directly to the floral welcome. A focused check of the actual positioning and painting functions also confirmed unchanged animation progress when only the browser toolbar height changes. Physical Android/iOS toolbar behavior requires checking the redeployed page on a phone.
 - Laptop pathway placement visually reviewed at 1366 × 768. The actual positioning function was also checked at 1280 × 720, 1440 × 900, 1536 × 864, 1920 × 1080, 2560 × 1440, 1024 × 893, 390 × 844, and 320 × 667: the full character height stays below the doorstep and both feet remain on the visible walkway.
 - Ribbon interaction, cross zoom, floral reveal, English/Tamil switch, motion toggle, mobile menu, and dialog open/Escape-close checked in the browser.
 - Latest bilingual PDF downloaded from the standalone bundle and matched byte for byte against the current combined PDF. All three embedded PDFs and both previews match their latest printed sources.
