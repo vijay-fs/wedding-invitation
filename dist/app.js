@@ -26,10 +26,10 @@
       time:'4:00 PM onwards',eventName:'WEDDING & RECEPTION',timeNote:'All celebrations at New Life Celebration Center, Pallavaram, Chennai.',calendar:'Keep the date',countdownIntro:'Every moment brings us closer.',days:'days',hours:'hours',minutes:'minutes',seconds:'seconds',
       venueEyebrow:'WHERE OUR FOREVER BEGINS',venueTitle:'A beautiful place.\nAn even more beautiful beginning.',venueName:'New Life Celebration Center',venueAddress:'Pallavaram, Chennai, Tamil Nadu',directions:'Let’s get you there',venueCaption:'A warm welcome awaits you at NLCC.',
       familyEyebrow:'WITH OPEN HEARTS & OPEN ARMS',familyTitle:'Our families\nwelcome you.',familyOne:'Mr. Nagarajan M.A.',familyTwo:'Mrs. Sumathi Nagarajan M.A.; CNI (ICDS SW), Rt.',familyThree:'Mr. Rakeshbabu B.Tech; Vice President (BNY Mellon)',familyFour:'Mr. & Mrs. Lordson Joshua and family',familyWelcome:'Join us with your love, prayers, and blessings.',
-      invitationEyebrow:'A LITTLE SOMETHING TO KEEP',invitationTitle:'An invitation,\nfrom our hearts to yours.',invitationIntro:'Keep our invitation close, and bring your blessings closer.',downloadInvite:'Download invitation',previewInvite:'Take a closer look',bothLanguages:'Both languages',
+      invitationEyebrow:'A LITTLE SOMETHING TO KEEP',invitationTitle:'An invitation,\nfrom our hearts to yours.',invitationIntro:'Keep our invitation close, and bring your blessings closer.',downloadInvite:'Download invitation',previewInvite:'Take a closer look',
       footerEyebrow:'WE CAN’T WAIT TO SEE YOU',footerDate:'7 January 2027 · Pallavaram, Chennai',share:'Share the joy',backTop:'Back to the beginning ↑',music:'Music',
       authorHi:'Hi! Like the site?',authorQuestion:'Wanna meet the author?',authorLink:'Click or tap here',authorLabel:'Meet Vijay, the author of this website (opens in a new tab)',
-      copySuccess:'Invitation details copied. Share the joy!',copyFallback:'Share this HTML file with your loved ones.',calendarSuccess:'Your calendar invitation is ready.',musicError:'Music could not be played. Please try again.',motionOn:'Gentle view enabled. Animation is reduced.',motionOff:'Cinematic opening enabled.',celebrationToday:'Our celebration begins today.',celebrationPast:'A day to remember. A love to celebrate.'
+      copySuccess:'Invitation details copied. Share the joy!',copyFallback:'Share this HTML file with your loved ones.',calendarSuccess:'Your calendar invitation is ready.',musicError:'Music could not be played. Please try again.',celebrationToday:'Our celebration begins today.',celebrationPast:'A day to remember. A love to celebrate.'
     },
     ta: {
       skip:'தொடக்கத்தைத் தவிர்க்கவும்',menu:'பட்டி',navCouple:'மணமக்கள்',navDay:'மணநாள்',navVenue:'நிகழ்விடம்',navInvite:'அழைப்பிதழ்',
@@ -43,10 +43,10 @@
       time:'மாலை 4:00 மணி முதல்',eventName:'திருமணம் & வரவேற்பு',timeNote:'திருமணம் மற்றும் வரவேற்பு: நியூ லைஃப் செலிப்ரேஷன் சென்டர், பல்லாவரம், சென்னை.',calendar:'நாளைச் சேமிக்கவும்',countdownIntro:'எங்கள் மணநாளை நோக்கி…',days:'நாட்கள்',hours:'மணி',minutes:'நிமிடம்',seconds:'நொடி',
       venueEyebrow:'எங்கள் இனிய பயணம் தொடங்கும் இடம்',venueTitle:'அழகிய இடத்தில்\nஅன்பான தொடக்கம்.',venueName:'நியூ லைஃப் செலிப்ரேஷன் சென்டர்',venueAddress:'பல்லாவரம், சென்னை, தமிழ்நாடு',directions:'வழியைக் காணவும்',venueCaption:'NLCC-யில் உங்களை அன்புடன் வரவேற்கிறோம்.',
       familyEyebrow:'அன்புடனும் மகிழ்வுடனும்',familyTitle:'எங்கள் குடும்பத்தினர்\nவரவேற்கிறோம்.',familyOne:'திரு. நாகராஜன் M.A.',familyTwo:'திருமதி. சுமதி நாகராஜன் M.A.; CNI (ICDS SW), Rt.',familyThree:'திரு. ராகேஷ்பாபு B.Tech; Vice President (BNY Mellon)',familyFour:'திரு. & திருமதி. லார்ட்சன் ஜோஷ்வா மற்றும் குடும்பத்தினர்',familyWelcome:'உங்கள் அன்புடனும் பிரார்த்தனைகளுடனும் ஆசிகளுடனும் வருக.',
-      invitationEyebrow:'எங்கள் அன்பின் அழைப்பு',invitationTitle:'எங்கள் இதயத்திலிருந்து\nஓர் அன்பான அழைப்பு.',invitationIntro:'எங்கள் அழைப்பை ஏற்று, உங்கள் ஆசிகளுடன் வருக.',downloadInvite:'அழைப்பிதழைப் பதிவிறக்க',previewInvite:'அழைப்பிதழைப் பார்க்க',bothLanguages:'இரு மொழிகளிலும்',
+      invitationEyebrow:'எங்கள் அன்பின் அழைப்பு',invitationTitle:'எங்கள் இதயத்திலிருந்து\nஓர் அன்பான அழைப்பு.',invitationIntro:'எங்கள் அழைப்பை ஏற்று, உங்கள் ஆசிகளுடன் வருக.',downloadInvite:'அழைப்பிதழைப் பதிவிறக்க',previewInvite:'அழைப்பிதழைப் பார்க்க',
       footerEyebrow:'உங்கள் வருகையை எதிர்நோக்குகிறோம்',footerDate:'7 ஜனவரி 2027 · பல்லாவரம், சென்னை',share:'மகிழ்வைப் பகிரவும்',backTop:'தொடக்கத்திற்குச் செல்ல ↑',music:'இசை',
       authorHi:'ஹாய்! தளம் பிடித்திருக்கிறதா?',authorQuestion:'உருவாக்கியவரைச் சந்திக்க வேண்டுமா?',authorLink:'இங்கே தொடுங்கள்',authorLabel:'தளத்தை உருவாக்கிய விஜய்யைச் சந்திக்கவும் (புதிய தாவலில் திறக்கும்)',
-      copySuccess:'அழைப்பு விவரங்கள் நகலெடுக்கப்பட்டன.',copyFallback:'இந்த HTML கோப்பை உங்கள் அன்புக்குரியவர்களுடன் பகிரவும்.',calendarSuccess:'நாள்காட்டி அழைப்பு தயாராக உள்ளது.',musicError:'இசையை இயக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.',motionOn:'அசைவுகள் குறைக்கப்பட்டன.',motionOff:'அசைவுகளுடன் தொடக்கம் இயக்கப்பட்டது.',celebrationToday:'எங்கள் கொண்டாட்டம் இன்று தொடங்குகிறது.',celebrationPast:'நினைவில் நிற்கும் நாள். அன்பில் நிறைந்த வாழ்வு.'
+      copySuccess:'அழைப்பு விவரங்கள் நகலெடுக்கப்பட்டன.',copyFallback:'இந்த HTML கோப்பை உங்கள் அன்புக்குரியவர்களுடன் பகிரவும்.',calendarSuccess:'நாள்காட்டி அழைப்பு தயாராக உள்ளது.',musicError:'இசையை இயக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.',celebrationToday:'எங்கள் கொண்டாட்டம் இன்று தொடங்குகிறது.',celebrationPast:'நினைவில் நிற்கும் நாள். அன்பில் நிறைந்த வாழ்வு.'
     }
   };
   let language = 'en';
@@ -106,8 +106,6 @@
     }
   }
   let guidePhase = -1, guidedFrame = 0, guidePlaying = false;
-  let reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  try { const preference = localStorage.getItem('rl-invitation-motion'); if (preference !== null) reduce = preference === 'reduced'; } catch {}
   let dimensions = {};
   let measureFrame = 0, headerWidth = 0, headerSpace = 0;
   const clamp = (v, min = 0, max = 1) => Math.min(max, Math.max(min, v));
@@ -117,7 +115,7 @@
     // innerHeight independently of CSS viewport units during a swipe.
     const w = stage.clientWidth, h = stage.clientHeight;
     const portrait=w<=760;
-    stage.dataset.mobile = String(portrait && !reduce);
+    stage.dataset.mobile = String(portrait);
     const artwork=portrait
       ? {src:'assets/anime-church-narrow-phone.webp',width:1024,height:1536,crossX:.528,crossY:.295,pathX:.517,pathTop:.735,pathFarWidth:.073,pathNearWidth:.444,positionX:.5}
       : {src:'assets/anime-church-narrow-wide.webp',width:1586,height:992,crossX:.614,crossY:.217,pathX:.608,pathTop:.84,pathFarWidth:.063,pathNearWidth:.236,positionX:.6};
@@ -160,7 +158,7 @@
     dimensions = {
       w,h, x:imageLeft+rw*artwork.crossX, y:safeTop+rh*artwork.crossY,
       distance:Math.max(1,opening.offsetHeight-h), top:opening.offsetTop,
-      mobile:portrait && !reduce
+      mobile:portrait
     };
     scene.style.transformOrigin = dimensions.x + 'px ' + (dimensions.y-safeTop) + 'px';
     requestTick();
@@ -203,7 +201,6 @@
     document.body.classList.remove('journey-playing');requestTick();
   }
   function enterInvitation(event) {
-    if (reduce) return;
     event.preventDefault();
     if (guidePlaying) return;
     guidePlaying=true;guidePhase=-1;
@@ -237,7 +234,6 @@
     const pageProgress = clamp(scrollY / Math.max(1,document.documentElement.scrollHeight-h));
     document.querySelector('.reading-progress i').style.transform = 'scaleX(' + pageProgress + ')';
     $('header').classList.toggle('scrolled', scrollY > 50);
-    if (reduce) return;
     const p = clamp((scrollY-top)/distance);
     updateGuide(p);
     const camera = smooth(.42,.84,p);
@@ -278,24 +274,11 @@
     portal.setAttribute('aria-hidden',String(p<.88));
     $('opening-dust').style.opacity = String(1-smooth(.82,.96,p));
   }
-  function applyMotion() {
+  function initializeOpening() {
     stopGuidedEntry();
-    document.body.classList.toggle('reduced-motion',reduce);
-    $('motion-toggle').setAttribute('aria-pressed',String(reduce));
-    $('motion-toggle').setAttribute('aria-label',reduce ? 'Enable cinematic animation' : 'Reduce animation');
-    $('motion-toggle').title = reduce ? 'Enable cinematic animation' : 'Reduce animation';
     scene.style.transform='none';scene.style.willChange='auto';
-    if (reduce) { portal.hidden=false;portal.style.clipPath='none';portal.inert=false;portal.setAttribute('aria-hidden','false');copy.inert=true;copy.setAttribute('aria-hidden','true'); }
     measure();
   }
-  $('motion-toggle').addEventListener('click',() => {
-    const inOpening = scrollY < opening.offsetHeight-innerHeight;
-    reduce = !reduce;
-    try { localStorage.setItem('rl-invitation-motion',reduce?'reduced':'cinematic'); } catch {}
-    applyMotion();
-    if (inOpening) window.scrollTo({top:0,behavior:'instant'});
-    toast(text[language][reduce?'motionOn':'motionOff']);
-  });
   $('enter-invitation').addEventListener('click',enterInvitation);
   scrollCue.addEventListener('click',enterInvitation);
   document.querySelectorAll('a[href="#opening"]').forEach(link=>link.addEventListener('click',()=>{stopGuidedEntry();requestMeasure();}));
@@ -375,7 +358,7 @@
     });
   }
   setLanguage(language);
-  applyMotion();
+  initializeOpening();
   updateCountdown();
   setInterval(updateCountdown,1000);
   document.fonts?.ready.then(measure);
