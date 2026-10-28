@@ -1,9 +1,0 @@
-Use case: illustration-story.
-Asset type: transparent 4-frame character sprite sheet for a small wedding website footer.
-Primary request: Turn the person in the reference portrait into a friendly, recognizable polished anime character, smiling and waving hello. Preserve his short dark hair, rectangular black glasses, medium brown skin, light moustache and short trimmed beard, and burgundy zip hoodie over black T-shirt.
-Reference image role: identity and clothing reference only.
-Composition: ONE SQUARE sprite sheet divided invisibly into exactly four equal SQUARE cells in a 2 by 2 grid. Each cell contains the SAME waist-up character at EXACTLY the same size, position and head/body alignment. His head, glasses, smile, shoulders and torso remain still across all four cells. His raised waving hand appears on the VIEWER'S RIGHT next to his head. All hand/arm artwork stays completely inside each cell, with generous clear margins at top and sides. Torso ends at the bottom of each cell.
-Animation: top left frame palm upright, top right frame hand tilts gently outward at wrist, bottom right frame palm upright again, bottom left frame hand tilts gently inward at wrist. Only the forearm/wrist and open waving hand change; everything else remains identical so the loop doesn't jump. Five natural fingers per hand.
-Style: charming modern anime, clean fine ink lines, soft cel shading, warm welcoming expression, tasteful proportions, not an extreme chibi. Colors match a warm ivory, teal, magenta wedding website; hoodie remains burgundy.
-Background: genuinely transparent alpha across the sheet. No background in any cell.
-Constraints: NO words, NO letters, NO frame numbers, NO visible grid lines, NO borders, NO speech bubbles, NO flowers, NO props, NO scenery, NO watermarks. This is a UI sprite asset with four precisely aligned animation frames.

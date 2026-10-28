@@ -1,3 +1,0 @@
-Source portrait: https://vijay.devquery.in/
-Input: design/author-portrait-reference.png
-Mode: built-in ImageGen, transparent output. Four-frame 2 × 2 sprite sheet.

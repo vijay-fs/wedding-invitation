@@ -41,7 +41,7 @@ def build():
     replacement = '<script id="embedded-assets" type="application/json">' + json.dumps(assets, separators=(',', ':')) + '</script>\n<script>' + bootstrap + '\n' + script + '</script>'
     html = html.replace('<script src="app.js"></script>', replacement)
     html = html.replace('<body>', '<body>\n<noscript><p style="padding:24px;text-align:center">Please enable JavaScript to view the embedded artwork and invitation downloads.</p></noscript>')
-    licenses = '\n\n'.join(p.stem + '\n' + p.read_text() for p in sorted((ROOT / 'design').glob('*-OFL.txt')))
+    licenses = '\n\n'.join(p.stem + '\n' + p.read_text() for p in sorted((DIST / 'assets' / 'fonts' / 'licenses').glob('*-OFL.txt')))
     html = html.replace('</html>', '<!-- Embedded font licenses\n' + licenses.replace('--', '—') + '\n-->\n</html>')
     OUTPUT.mkdir(parents=True, exist_ok=True)
     target = OUTPUT / "Ragulbabu-Lydiya-Wedding.html"
