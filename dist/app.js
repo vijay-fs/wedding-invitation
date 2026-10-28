@@ -28,6 +28,7 @@
       familyEyebrow:'WITH OPEN HEARTS & OPEN ARMS',familyTitle:'Our families\nwelcome you.',familyOne:'Mr. Nagarajan M.A.',familyTwo:'Mrs. Sumathi Nagarajan M.A.; CNI (ICDS SW), Rt.',familyThree:'Mr. Rakeshbabu B.Tech; Vice President (BNY Mellon)',familyFour:'Mr. & Mrs. Lordson Joshua and family',familyWelcome:'Join us with your love, prayers, and blessings.',
       invitationEyebrow:'A LITTLE SOMETHING TO KEEP',invitationTitle:'An invitation,\nfrom our hearts to yours.',invitationIntro:'Keep our invitation close, and bring your blessings closer.',downloadInvite:'Download invitation',previewInvite:'Take a closer look',bothLanguages:'Both languages',
       footerEyebrow:'WE CAN’T WAIT TO SEE YOU',footerDate:'7 January 2027 · Pallavaram, Chennai',share:'Share the joy',backTop:'Back to the beginning ↑',music:'Music',
+      authorHi:'Hi! Like the site?',authorQuestion:'Wanna meet the author?',authorLink:'Click or tap here',authorLabel:'Meet Vijay, the author of this website (opens in a new tab)',
       copySuccess:'Invitation details copied. Share the joy!',copyFallback:'Share this HTML file with your loved ones.',calendarSuccess:'Your calendar invitation is ready.',musicError:'Music could not be played. Please try again.',motionOn:'Gentle view enabled. Animation is reduced.',motionOff:'Cinematic opening enabled.',celebrationToday:'Our celebration begins today.',celebrationPast:'A day to remember. A love to celebrate.'
     },
     ta: {
@@ -44,6 +45,7 @@
       familyEyebrow:'அன்புடனும் மகிழ்வுடனும்',familyTitle:'எங்கள் குடும்பத்தினர்\nவரவேற்கிறோம்.',familyOne:'திரு. நாகராஜன் M.A.',familyTwo:'திருமதி. சுமதி நாகராஜன் M.A.; CNI (ICDS SW), Rt.',familyThree:'திரு. ராகேஷ்பாபு B.Tech; Vice President (BNY Mellon)',familyFour:'திரு. & திருமதி. லார்ட்சன் ஜோஷ்வா மற்றும் குடும்பத்தினர்',familyWelcome:'உங்கள் அன்புடனும் பிரார்த்தனைகளுடனும் ஆசிகளுடனும் வருக.',
       invitationEyebrow:'எங்கள் அன்பின் அழைப்பு',invitationTitle:'எங்கள் இதயத்திலிருந்து\nஓர் அன்பான அழைப்பு.',invitationIntro:'எங்கள் அழைப்பை ஏற்று, உங்கள் ஆசிகளுடன் வருக.',downloadInvite:'அழைப்பிதழைப் பதிவிறக்க',previewInvite:'அழைப்பிதழைப் பார்க்க',bothLanguages:'இரு மொழிகளிலும்',
       footerEyebrow:'உங்கள் வருகையை எதிர்நோக்குகிறோம்',footerDate:'7 ஜனவரி 2027 · பல்லாவரம், சென்னை',share:'மகிழ்வைப் பகிரவும்',backTop:'தொடக்கத்திற்குச் செல்ல ↑',music:'இசை',
+      authorHi:'ஹாய்! தளம் பிடித்திருக்கிறதா?',authorQuestion:'உருவாக்கியவரைச் சந்திக்க வேண்டுமா?',authorLink:'இங்கே தொடுங்கள்',authorLabel:'தளத்தை உருவாக்கிய விஜய்யைச் சந்திக்கவும் (புதிய தாவலில் திறக்கும்)',
       copySuccess:'அழைப்பு விவரங்கள் நகலெடுக்கப்பட்டன.',copyFallback:'இந்த HTML கோப்பை உங்கள் அன்புக்குரியவர்களுடன் பகிரவும்.',calendarSuccess:'நாள்காட்டி அழைப்பு தயாராக உள்ளது.',musicError:'இசையை இயக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.',motionOn:'அசைவுகள் குறைக்கப்பட்டன.',motionOff:'அசைவுகளுடன் தொடக்கம் இயக்கப்பட்டது.',celebrationToday:'எங்கள் கொண்டாட்டம் இன்று தொடங்குகிறது.',celebrationPast:'நினைவில் நிற்கும் நாள். அன்பில் நிறைந்த வாழ்வு.'
     }
   };
@@ -62,6 +64,7 @@
       if (value !== undefined) el.textContent = value;
     });
     document.querySelectorAll('[data-lang]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.lang === language)));
+    $('author-link').setAttribute('aria-label',text[language].authorLabel);
     const tamil = language === 'ta';
     $('invitation-image').src = asset(tamil ? 'assets/invitation-tamil.png' : 'assets/invitation-english.png');
     $('invitation-image').alt = tamil ? 'தமிழ் திருமண அழைப்பிதழ்' : 'English printed wedding invitation';
@@ -127,7 +130,7 @@
     const pathCenter=imageLeft+rw*artwork.pathX;
     const roadTop=safeTop+rh*artwork.pathTop;
     const roadBottom=safeTop+rh*.99;
-    const feetY=Math.min(h-42,roadTop+(roadBottom-roadTop)*.78);
+    const feetY=Math.min(h-(portrait?76:42),roadTop+(roadBottom-roadTop)*.78);
     const preferredWidth=portrait?(h<=740?48:54):clamp(w*.05,46,74);
     const figureHeight=Math.min(preferredWidth*1.5,Math.max(24,feetY-roadTop-8));
     const ribbonY=feetY-figureHeight*.53;
