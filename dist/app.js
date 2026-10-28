@@ -96,6 +96,15 @@
   const waitingCouple = $('couple-waiting'), happyCouple = $('couple-happy');
   const closedRibbon = $('ribbon-closed'), cutRibbon = $('ribbon-cut');
   const scissors = $('ribbon-scissors');
+  const clippedSurfaces = [stage,portal,pathwayStory,document.querySelector('.site-footer')];
+  function resetClippedScroll() {
+    // Focus can scroll overflow:hidden containers even without scrollbars.
+    // Retain a reset for browsers that fall back from overflow:clip.
+    for (const surface of clippedSurfaces) {
+      if (surface.scrollTop) surface.scrollTop=0;
+      if (surface.scrollLeft) surface.scrollLeft=0;
+    }
+  }
   let guidePhase = -1, guidedFrame = 0, guidePlaying = false;
   let reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   try { const preference = localStorage.getItem('rl-invitation-motion'); if (preference !== null) reduce = preference === 'reduced'; } catch {}
@@ -127,6 +136,8 @@
     const imageLeft=rw<w?w-rw:(w-rw)*artwork.positionX;
     churchImage.style.width=rw+'px';churchImage.style.height=rh+'px';
     churchImage.style.left=imageLeft+'px';churchImage.style.top='0px';
+    $('church-edge-fade').style.left=imageLeft+'px';
+    $('church-edge-fade').style.width=(rw*.14)+'px';
     scene.classList.toggle('has-side-space',rw<w);
     const pathCenter=imageLeft+rw*artwork.pathX;
     const roadTop=safeTop+rh*artwork.pathTop;
@@ -217,6 +228,7 @@
   function requestTick() { if (!frame) frame = requestAnimationFrame(paint); }
   function paint() {
     frame = 0;
+    resetClippedScroll();
     const { w,h,x,y,distance,top,mobile } = dimensions;
     // Keep the mobile stage attached to the screen from the very first swipe.
     // Release it at the end so normal document scrolling continues in both directions.
@@ -233,10 +245,15 @@
     const scale = Math.exp(camera*Math.log(16));
     const tx = (w*.5-x)*travel;
     const ty = (h*.43-y)*travel;
-    scene.style.transform = 'translate3d(' + tx + 'px,' + ty + 'px,0) scale(' + scale + ')';
+    // Release the zoom layer at either end. Retaining a large masked/composited
+    // surface can leave stale tiles when browsers restore the opening in reverse.
+    const cameraActive = camera > 0 && p < .96;
+    scene.style.willChange = cameraActive ? 'transform,opacity' : 'auto';
+    scene.style.transform = cameraActive ? 'translate(' + tx + 'px,' + ty + 'px) scale(' + scale + ')' : 'none';
     scene.style.opacity = String(1-smooth(.85,.96,p));
     copy.style.opacity = String(1-smooth(.16,.28,p));
-    copy.style.transform = 'translateY(' + (w <= 760 ? -p*90 : -41-p*60) + (w <= 760 ? 'px)' : '%)');
+    copy.style.willChange = p > 0 && p < .3 ? 'opacity,transform' : 'auto';
+    copy.style.transform = p === 0 ? '' : 'translateY(' + (w <= 760 ? -p*90 : -41-p*60) + (w <= 760 ? 'px)' : '%)');
     copy.inert = p > .18;
     copy.setAttribute('aria-hidden',String(p > .25));
     $('scene-wash').style.opacity = String(1-smooth(.35,.55,p));
@@ -249,7 +266,10 @@
     const unit = growth*growth*Math.max(w,h)*1.8;
     const cx = x+tx, cy = y+ty;
     const points = [[cx-unit*.5,cy-unit*3],[cx+unit*.5,cy-unit*3],[cx+unit*.5,cy-unit*.5],[cx+unit*3,cy-unit*.5],[cx+unit*3,cy+unit*.5],[cx+unit*.5,cy+unit*.5],[cx+unit*.5,cy+unit*6],[cx-unit*.5,cy+unit*6],[cx-unit*.5,cy+unit*.5],[cx-unit*3,cy+unit*.5],[cx-unit*3,cy-unit*.5],[cx-unit*.5,cy-unit*.5]];
-    portal.style.clipPath = 'polygon(' + points.map(point => point[0]+'px '+point[1]+'px').join(',') + ')';
+    // Keep clip geometry within the viewport and remove the portal entirely at
+    // the start instead of leaving a collapsed, offscreen clipping surface.
+    portal.hidden = p < .78;
+    portal.style.clipPath = p < .78 || p >= .98 ? 'none' : 'polygon(' + points.map(point => clamp(point[0],-1,w+1)+'px '+clamp(point[1],-1,h+1)+'px').join(',') + ')';
     const welcomeProgress = smooth(.88,.98,p);
     welcome.style.opacity = String(welcomeProgress);
     welcome.style.transform = 'translateY(' + (1-welcomeProgress)*24 + 'px)';
@@ -264,7 +284,8 @@
     $('motion-toggle').setAttribute('aria-pressed',String(reduce));
     $('motion-toggle').setAttribute('aria-label',reduce ? 'Enable cinematic animation' : 'Reduce animation');
     $('motion-toggle').title = reduce ? 'Enable cinematic animation' : 'Reduce animation';
-    if (reduce) { portal.inert=false;portal.setAttribute('aria-hidden','false');copy.inert=true;copy.setAttribute('aria-hidden','true'); }
+    scene.style.transform='none';scene.style.willChange='auto';
+    if (reduce) { portal.hidden=false;portal.style.clipPath='none';portal.inert=false;portal.setAttribute('aria-hidden','false');copy.inert=true;copy.setAttribute('aria-hidden','true'); }
     measure();
   }
   $('motion-toggle').addEventListener('click',() => {
@@ -277,6 +298,7 @@
   });
   $('enter-invitation').addEventListener('click',enterInvitation);
   scrollCue.addEventListener('click',enterInvitation);
+  document.querySelectorAll('a[href="#opening"]').forEach(link=>link.addEventListener('click',()=>{stopGuidedEntry();requestMeasure();}));
   const takeControl=()=>stopGuidedEntry();
   window.addEventListener('wheel',takeControl,{passive:true});
   window.addEventListener('touchstart',takeControl,{passive:true});
@@ -288,10 +310,12 @@
   nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
   document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu();});
   document.addEventListener('click',event=>{if(!event.target.closest('.site-header'))closeMenu();});
-  window.addEventListener('scroll',requestTick,{passive:true});
+  window.addEventListener('scroll',requestTick,{passive:true,capture:true});
   window.addEventListener('resize',requestMeasure,{passive:true});
   if (window.visualViewport) window.visualViewport.addEventListener('resize',requestMeasure,{passive:true});
   if ('ResizeObserver' in window) new ResizeObserver(requestMeasure).observe(stage);
+  window.addEventListener('pageshow',()=>{stopGuidedEntry();requestMeasure();});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)requestMeasure();});
   for (let i=0;i<22;i++) {
     const dust=document.createElement('i');
     dust.style.left=((i*37.7)%100)+'%';dust.style.top=((i*21.3)%100)+'%';
