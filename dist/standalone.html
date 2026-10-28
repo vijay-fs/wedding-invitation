@@ -588,9 +588,10 @@ html[lang=ta] .author-cta{font-size:10px}
     const safeTop=Math.max(portrait?68:86,headerSpace)+12;
     const imageHeight=Math.max(1,h-safeTop);
     opening.style.setProperty('--church-safe-top',safeTop+'px');
-    // Fit the full height so laptop aspect ratios cannot crop away the walkway.
-    const scale=imageHeight/artwork.height;
-    const rw=artwork.width*scale,rh=imageHeight;
+    // Keep the whole church visible, with its entrance slightly nearer the couple.
+    const entranceAdvance=portrait?clamp(imageHeight*.035,16,26):clamp(imageHeight*.022,12,22);
+    const scale=(imageHeight+entranceAdvance)/artwork.height;
+    const rw=artwork.width*scale,rh=artwork.height*scale;
     const imageLeft=rw<w?w-rw:(w-rw)*artwork.positionX;
     churchImage.style.width=rw+'px';churchImage.style.height=rh+'px';
     churchImage.style.left=imageLeft+'px';churchImage.style.top='0px';
@@ -599,9 +600,11 @@ html[lang=ta] .author-cta{font-size:10px}
     const roadTop=safeTop+rh*artwork.pathTop;
     const roadBottom=safeTop+rh*.99;
     const feetY=Math.min(h-(portrait?76:42),roadTop+(roadBottom-roadTop)*.78);
-    const preferredWidth=portrait?(h<=740?48:54):clamp(w*.05,46,74);
-    const figureHeight=Math.min(preferredWidth*1.5,Math.max(24,feetY-roadTop-8));
-    const ribbonY=feetY-figureHeight*.53;
+    const preferredWidth=portrait?(h<=740?60:68):clamp(w*.06,58,88);
+    // Feet stay on the walkway; the taller figures can overlap the entrance
+    // slightly, as people naturally would when standing in front of a building.
+    const figureHeight=Math.min(preferredWidth*1.5,Math.max(24,feetY-roadTop+18));
+    const ribbonY=feetY-figureHeight*.43;
     const ribbonDepth=clamp((ribbonY-roadTop)/Math.max(1,roadBottom-roadTop));
     const roadWidth=rw*(artwork.pathFarWidth+(artwork.pathNearWidth-artwork.pathFarWidth)*ribbonDepth);
     const ribbonWidth=Math.min(portrait?158:clamp(w*.16,135,220),roadWidth*.9);
