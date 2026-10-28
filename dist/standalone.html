@@ -162,7 +162,7 @@ html[lang=ta] body{font-family:'Noto Sans Tamil',sans-serif}html[lang=ta] h2{fon
 .ribbon-down{display:block;font-size:22px;line-height:1.3;color:var(--rose);animation:ribbonArrow 2.4s ease infinite}
 .instruction-touch{display:none}
 .welcome-portal{z-index:4}
-.welcome-bottom{z-index:3;padding:8px 0;font-size:10px;letter-spacing:.07em;border-top:1px solid #b9c9bd77;color:var(--teal)}
+.welcome-bottom{z-index:3;justify-content:flex-end;gap:14px;text-align:right;padding:8px 0;font-size:10px;letter-spacing:.07em;border-top:1px solid #b9c9bd77;color:var(--teal)}
 .welcome-bottom>span:last-child{animation:ribbonArrow 2.4s ease infinite}.welcome-bottom:hover{color:var(--rose)}
 html[lang=ta] .couple-request p:not(.pathway-names){font:400 16px/1.8 'Noto Sans Tamil',sans-serif}
 html[lang=ta] .ribbon-instruction p{font:500 13px/1.8 'Noto Sans Tamil',sans-serif}
@@ -299,7 +299,8 @@ html[lang=ta] .author-cta{font-size:10px}
   .welcome-intro{font-size:21px;max-width:300px;line-height:1.4}
   .welcome-date{font-size:12px;gap:12px;letter-spacing:.03em}.welcome-date b{padding:0 14px}
   .welcome-content .button{font-size:14px}.welcome-place{font-size:13px;line-height:1.6;max-width:290px}
-  .welcome-bottom{font-size:12px;letter-spacing:.02em;bottom:14px;min-height:40px}
+  .welcome-bottom{left:max(7%,calc(clamp(235px,43vw,335px) - 86px));font-size:12px;letter-spacing:.02em;bottom:14px;min-height:40px}
+  .welcome-bottom>span:last-child{flex-shrink:0}
   .qualifications{font-size:24px}.workplace{font-size:14px;line-height:1.7}
   .parent-blessing{font-size:20px;max-width:100%}.parent-blessing em{font-size:17px}
   .verse-section cite{font-size:12px;letter-spacing:.13em}
@@ -330,6 +331,20 @@ html[lang=ta] .author-cta{font-size:10px}
   .welcome-place{margin-top:9px}.welcome-content>.eyebrow{font-size:10px}
   html[lang=ta] .welcome-names{font-size:29px;line-height:1.5}
   html[lang=ta] .welcome-intro{font-size:13px;line-height:1.8;margin:7px auto 11px}
+}
+
+/* Keep the floral corners light on narrow phones and leave room for the prompt. */
+@media(max-width:480px){
+  .welcome-flower{width:clamp(155px,42vw,200px)}
+  .flower-one{left:-62px;bottom:-48px}
+  .flower-two{right:-62px;top:-50px}
+  .welcome-bottom{left:max(7%,calc(clamp(155px,42vw,200px) - 28px))}
+}
+
+/* Reserve a separate corner below the family welcome text on phones. */
+@media(max-width:760px){
+  .family-section{padding-bottom:120px}
+  .family-flower{width:clamp(135px,25vw,180px);left:-65px;bottom:-90px}
 }
 </style>
 </head>
