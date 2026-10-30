@@ -141,14 +141,17 @@
     const roadTop=safeTop+rh*artwork.pathTop;
     const roadBottom=safeTop+rh*.99;
     const feetY=Math.min(h-(portrait?76:42),roadTop+(roadBottom-roadTop)*.78);
-    const preferredWidth=portrait?(h<=740?60:68):clamp(w*.06,58,88);
+    const preferredWidth=portrait?clamp(w*.18,84,104):clamp(w*.06,58,88);
     // Feet stay on the walkway; the taller figures can overlap the entrance
     // slightly, as people naturally would when standing in front of a building.
-    const figureHeight=Math.min(preferredWidth*1.5,Math.max(24,feetY-roadTop+18));
+    const figureHeight=Math.min(preferredWidth*1.5,Math.max(24,feetY-roadTop+(portrait?64:18)));
     const ribbonY=feetY-figureHeight*.43;
     const ribbonDepth=clamp((ribbonY-roadTop)/Math.max(1,roadBottom-roadTop));
     const roadWidth=rw*(artwork.pathFarWidth+(artwork.pathNearWidth-artwork.pathFarWidth)*ribbonDepth);
-    const ribbonWidth=Math.min(portrait?158:clamp(w*.16,135,220),roadWidth*.9);
+    // The mobile flowers frame a wider ribbon around the grounded couple.
+    const feetDepth=clamp((feetY-roadTop)/Math.max(1,roadBottom-roadTop));
+    const foregroundWidth=rw*(artwork.pathFarWidth+(artwork.pathNearWidth-artwork.pathFarWidth)*feetDepth);
+    const ribbonWidth=portrait?Math.min(clamp(w*.28,120,174),foregroundWidth*1.25)*1.25:Math.min(clamp(w*.16,135,220),roadWidth*.9);
     opening.style.setProperty('--pathway-center',pathCenter+'px');
     opening.style.setProperty('--pathway-figure-width',(figureHeight/1.5)+'px');
     opening.style.setProperty('--pathway-feet-bottom',(h-feetY)+'px');
@@ -173,6 +176,7 @@
     closedRibbon.style.opacity=String(1-cut);cutRibbon.style.opacity=String(cut);
     waitingCouple.style.opacity=String(1-happy);happyCouple.style.opacity=String(happy);
     scissors.style.opacity=String(1-smooth(.11,.16,p));
+    scrollCue.style.opacity=scissors.style.opacity;
     const bladeAngle=18*(1-smooth(.015,.085,p));
     $('scissor-left').style.transform='rotate('+bladeAngle+'deg)';
     $('scissor-right').style.transform='rotate('+(-bladeAngle)+'deg)';

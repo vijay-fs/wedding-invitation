@@ -226,3 +226,10 @@ html[lang=ta] .author-cta{font-size:10px}
   .family-section{padding-bottom:120px}
   .family-flower{width:clamp(135px,25vw,180px);left:-65px;bottom:-90px}
 }
+
+/* A clear, thumb-sized scissors control for the larger phone vignette. */
+@media(max-width:760px){
+  .ribbon-bow{z-index:1;width:54px;height:54px;transform:translate(-50%,-50%);background:#fffdfbf5;border:2px solid var(--rose);box-shadow:0 3px 12px #234b5c40}
+  .ribbon-scissors{z-index:2;width:36px;height:36px;transform:translate(-50%,-50%);stroke-width:2;filter:none}
+  .ribbon-bow:focus-visible{outline:3px solid var(--ink);outline-offset:4px}
+}

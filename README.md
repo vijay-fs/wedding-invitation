@@ -42,6 +42,6 @@ If the domain changes, update the absolute metadata URLs in `dist/index.html` an
 
 ## Artwork and fonts
 
-The church, couple, ribbon, flowers, venue, and panda use the approved illustrations. Phones and wider screens use separate church artwork. The cinematic opening is always enabled, while the device’s reduced-motion setting suppresses decorative CSS animations.
+The church, couple, ribbon, flowers, venue, and panda use the approved illustrations. Phones and wider screens use separate church artwork. The cinematic opening is always enabled, while the device’s reduced-motion setting suppresses decorative CSS animations. On screens up to 760 pixels wide, the opening couple and ribbon use a larger scale with fixed feet on the pathway. A 54-pixel circular tap target and 36-pixel scissors icon make the ribbon interaction easier to find; both fade out together after cutting.
 
 Fonts are Cormorant Garamond, Great Vibes, DM Sans, and Noto Sans Tamil. Their licenses remain in the deployed assets and standalone file.
