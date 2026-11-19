@@ -233,3 +233,29 @@ html[lang=ta] .author-cta{font-size:10px}
   .ribbon-scissors{z-index:2;width:36px;height:36px;transform:translate(-50%,-50%);stroke-width:2;filter:none}
   .ribbon-bow:focus-visible{outline:3px solid var(--ink);outline-offset:4px}
 }
+
+/* Clergy and family wording follows the current bilingual printed invitation. */
+.clergy-section{padding:80px 0 90px;text-align:center;border-bottom:1px solid var(--line)}
+.clergy-section h2,.clergy-section h3{font:italic 400 36px/1.25 var(--serif);letter-spacing:0;color:var(--teal);white-space:normal}
+.clergy-section h2{margin-bottom:22px}
+.clergy-section h3{margin:38px 0 24px;font-size:31px}
+.clergy-person{max-width:880px;margin:0 auto;font:400 25px/1.6 var(--serif);overflow-wrap:break-word}
+.clergy-person strong,.family-list strong{font-weight:700}
+.clergy-list{list-style:none;margin:0;padding:0;display:grid;gap:18px}
+.family-welcome{color:var(--rose);font-size:30px;margin-top:35px}
+html[lang=ta] .clergy-section h2,html[lang=ta] .clergy-section h3{font:500 24px/1.8 'Noto Sans Tamil',sans-serif}
+html[lang=ta] .clergy-person{font:400 18px/2 'Noto Sans Tamil',sans-serif}
+html[lang=ta] .family-welcome{font-weight:600;font-size:22px}
+@media(max-width:760px){
+  .clergy-section{padding:60px 0 66px}
+  .clergy-section h2{font-size:31px}
+  .clergy-section h3{font-size:28px;margin-top:34px}
+  .clergy-person{font-size:23px;line-height:1.5}
+  .clergy-person>span{display:block;font-size:19px;line-height:1.6;margin-top:5px}
+  .clergy-list{gap:26px}
+  .family-welcome{font-size:27px}
+  html[lang=ta] .clergy-section h2,html[lang=ta] .clergy-section h3{font-size:20px;line-height:1.8}
+  html[lang=ta] .clergy-person{font-size:17px;line-height:1.9}
+  html[lang=ta] .clergy-person>span{font-size:15px;line-height:1.9}
+  html[lang=ta] .family-welcome{font-size:20px;line-height:1.9}
+}

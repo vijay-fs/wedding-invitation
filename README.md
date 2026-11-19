@@ -2,7 +2,7 @@
 
 Public URL: https://ragul-weds-lydiya.devquery.in/
 
-A bilingual wedding invitation for 7 January 2027, 4:00 PM onwards, at New Life Celebration Center (NLCC), Pallavaram, Chennai. The site includes the cinematic church opening, illustrated couple, English/Tamil switch, calendar, venue directions, separate PDF downloads, sharing preview, and panda footer.
+A bilingual wedding invitation for 7 January 2027, 4:00 PM onwards, at New Life Celebration Center (NLCC), Pallavaram, Chennai. The site includes the cinematic church opening, illustrated couple, English/Tamil switch, calendar, venue directions, separate A5 PDF downloads (148 x 210 mm), sharing preview, and panda footer.
 
 ## Project files
 
@@ -14,7 +14,9 @@ A bilingual wedding invitation for 7 January 2027, 4:00 PM onwards, at New Life 
 - `vercel.json` — static Vercel deployment settings.
 - `.openai/hosting.json` — retained Site identity and hosting metadata.
 
-The standalone file is about 16.5 MiB and contains all current artwork, fonts, and both PDF downloads. External directions, sharing, and portfolio links require an internet connection. Unused artwork, photographic intermediates, duplicate original images, old prompts, the combined PDF asset, and the development preview harness have been removed.
+The standalone file is about 16.1 MiB and contains all current artwork, fonts, and both PDF downloads. External directions, sharing, and portfolio links require an internet connection. Unused artwork, photographic intermediates, duplicate original images, old prompts, the combined PDF asset, and the development preview harness have been removed.
+
+The blessings and officiants section, family names, Tamil venue spelling and closing welcome match the latest bilingual invitation. Both language versions keep names bold and designations regular. PDF downloads and preview images are synchronized with the latest A5 stationery; the printed couple-name fonts remain unchanged.
 
 ## Rebuild the standalone file
 
