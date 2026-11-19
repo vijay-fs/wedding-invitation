@@ -307,8 +307,9 @@
   }
   $('enter-invitation').addEventListener('click',enterInvitation);
   scrollCue.addEventListener('click',enterInvitation);
-  document.querySelectorAll('a[href="#opening"]').forEach(link=>link.addEventListener('click',()=>{stopGuidedEntry();requestMeasure();}));
-  const takeControl=()=>stopGuidedEntry();
+  document.querySelectorAll('a[href="#opening"]').forEach(link=>link.addEventListener('click',()=>{clearTimeout(autoEntryTimer);stopGuidedEntry();requestMeasure();}));
+  let autoEntryTimer = 0;
+  const takeControl=()=>{clearTimeout(autoEntryTimer);stopGuidedEntry();};
   window.addEventListener('wheel',takeControl,{passive:true});
   window.addEventListener('touchstart',takeControl,{passive:true});
   window.addEventListener('keydown',event=>{if(['ArrowDown','ArrowUp','PageDown','PageUp','Home','End',' ','Escape'].includes(event.key))takeControl();});
@@ -388,4 +389,11 @@
   updateCountdown();
   setInterval(updateCountdown,1000);
   document.fonts?.ready.then(measure);
+  // Auto-trigger the cinematic ribbon-cut scroll 2s after load/refresh
+  // Only fires when the user hasn't scrolled away from the opening
+  autoEntryTimer = setTimeout(() => {
+    if (scrollY <= dimensions.top + 10 && !guidePlaying) {
+      enterInvitation({ preventDefault() {} });
+    }
+  }, 2000);
 })();
